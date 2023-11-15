@@ -21,7 +21,6 @@ const Hello = () => {
         linkWidth={2}
         linkAutoColorBy={"source"}
       />
-      ,
     </>
   );
 };
