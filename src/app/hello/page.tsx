@@ -14,7 +14,7 @@ const Hello = () => {
           const fontSize = 12 / globalScale;
           ctx.font = `${fontSize}px sans-serif`;
           ctx.textAlign = "center";
-          ctx.fillStyle = "green";
+          ctx.fillStyle = "Red";
           ctx.fillText(label, node.x!, node.y!);
         }}
         linkDirectionalArrowLength={5}
