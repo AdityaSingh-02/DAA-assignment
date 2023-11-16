@@ -1,11 +1,23 @@
+// export interface IGraphData {
+//   nodes: {
+//     id: string;
+//     nodeVal: number;
+//   }[];
+//   links: {
+//     source: string;
+//     target: string;
+//     value: number;
+//   }[];
+// }
+
 export interface IGraphData {
   nodes: {
-    id: string;
-    group: number;
+    node: string;
+    id: number;
   }[];
   links: {
-    source: string;
-    target: string;
+    source: number;
+    target: number;
     value: number;
   }[];
 }
