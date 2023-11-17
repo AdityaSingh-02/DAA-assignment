@@ -1,6 +1,6 @@
 const INF: number = 2147483647;
 
-class dijkistra {
+class dijkstra {
   V: any;
   adj:any;
   constructor(V: number) {
@@ -17,6 +17,7 @@ class dijkistra {
   }
   shortestPath(src: number) {
     let pq = [];
+    let list = [];
     let dist = new Array(V).fill(INF);
     pq.push([0, src]);
     dist[src] = 0;
@@ -38,12 +39,13 @@ class dijkistra {
           });
         }
       }
+      list.push([...dist]);
     }
-    return dist;
+    return list;
   }
 }
 let V = 9;
-let g = new dijkistra(V);
+let g = new dijkstra(V);
  
 // making above shown graph
 // g.addEdge(0, 1, 4);
