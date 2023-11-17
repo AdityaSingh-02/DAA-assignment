@@ -3,20 +3,20 @@ import React, { useEffect, useState } from "react";
 import ForceGraph2D from "react-force-graph-2d";
 import { data } from "@/utils/misc";
 import { IGraphData } from "@/types/IGraphData";
-import g from "@/helper/dijkistra";
+import g from "@/helper/dijkstra";
 
 const Hello = () => {
   const [linkData, setLinkData] = useState<IGraphData>();
 
-  const insertVals = () => {
+  const insertVals = (node: {node: string, id:number}) => {
     data.links.map((link:any)=> {
       // g.addEdge(link.source.id, link.target.id, link.value)
       let a = link.source.id;
       let b = link.target.id;
       let c = link.value;
       g.addEdge(a,b,c);
-      // console.log(`Source - ${ln.source.id} , target - ${ln.target.id} , value ${ln.value}`);
-    })
+    });
+    console.log(g.shortestPath(node.id))
   }
 
   const handleClick = (node: {node: string, id:number}) => {

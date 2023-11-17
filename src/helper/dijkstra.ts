@@ -11,9 +11,9 @@ class dijkistra {
     }
   }
 
-  addEdge(u: number, v: number, w: number) {
-    this.adj[u].push([v, w]);
-    this.adj[v].push([u, w]);
+  addEdge(source: number, target: number, val: number) {
+    this.adj[source].push([target, val]);
+    this.adj[target].push([source, val]);
   }
   shortestPath(src: number) {
     let pq = [];
@@ -22,16 +22,16 @@ class dijkistra {
     dist[src] = 0;
 
     while (pq.length > 0) {
-      let u: number = pq[0][1];
+      let source: number = pq[0][1];
       pq.shift();
 
-      for (let i = 0; i < this.adj[u].length; i++) {
-        let v = this.adj[u][i][0];
-        let weight = this.adj[u][i][1];
+      for (let i = 0; i < this.adj[source].length; i++) {
+        let target = this.adj[source][i][0];
+        let weight = this.adj[source][i][1];
 
-        if (dist[v] > dist[u] + weight) {
-          dist[v] = dist[u] + weight;
-          pq.push([dist[v], v]);
+        if (dist[target] > dist[source] + weight) {
+          dist[target] = dist[source] + weight;
+          pq.push([dist[target], target]);
           pq.sort((a, b) => {
             if (a[0] == b[0]) return a[1] - b[1];
             return a[0] - b[0];
