@@ -16,7 +16,7 @@ const Hello = () => {
       let c = link.value;
       g.addEdge(a,b,c);
     });
-    console.log(g.shortestPath(node.id))
+    console.log(g.shortestPath(node.id));
   }
 
   const handleClick = (node: {node: string, id:number}) => {
