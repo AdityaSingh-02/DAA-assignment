@@ -18,11 +18,12 @@ class dijkstra {
     // this.adj[source].sort((a,b) => a[1]-b[1]); Comparator
     // this.adj[target].push([source, val]);
   }
-  shortestPath(src: number) {
+  async shortestPath(src: number) {
     let pq = [];
     let list = [];
     let verSel = [];
     let visited = [src];
+    let out:number[][] = [];
     let dist = new Array(V).fill(INF);
     pq.push([0, src]);
     dist[src] = 0;
@@ -47,10 +48,10 @@ class dijkstra {
           });
         }
       }
-      // console.log(visited, verSel)
+      out.push([...visited]);
       list.push([...dist]);
     }
-    return [list, visited, verSel];
+    return [list, out, verSel];
   }
 }
 let V = 9;
