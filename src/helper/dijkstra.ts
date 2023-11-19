@@ -51,7 +51,7 @@ class dijkstra {
       out.push([...visited]);
       list.push([...dist]);
     }
-    return [list, out, verSel];
+    return {list, out, verSel};
   }
 }
 let V = 9;

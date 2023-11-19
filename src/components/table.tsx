@@ -1,36 +1,177 @@
-import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import { useCallback, useEffect, useState } from "react";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 interface IProps {
-    items: number[][];
+  items: Items;
 }
 
-
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number,
-) {
-  return { name, calories, fat, carbs, protein };
+interface Items {
+  list: number[][];
+  out: number[][];
+  verSel: number[];
 }
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+const BasicTable = ({ items }: IProps) => {
+  const { list, out, verSel } = items;
 
-const BasicTable = (props:IProps) => {
+  //   const [rows, setRows] = useState<
+  //     [
+  //       {
+  //         iter: number;
+  //         s: number;
+  //         verSel: number;
+  //         LA: number;
+  //         SF: number;
+  //         DEN: number;
+  //         CHI: number;
+  //         BOST: number;
+  //         NY: number;
+  //         MIA: number;
+  //         NO: number;
+  //       }
+  //     ]
+  //   >()
+  const [rows, setRows] = useState<
+    {
+      iter: number;
+      s: number;
+      verSel: number;
+      LA: number;
+      SF: number;
+      DEN: number;
+      CHI: number;
+      BOST: number;
+      NY: number;
+      MIA: number;
+      NO: number;
+    }[]
+  >([
+    {
+      iter: 0,
+      s: 0,
+      verSel: 0,
+      LA: 0,
+      SF: 0,
+      DEN: 0,
+      CHI: 0,
+      BOST: 0,
+      NY: 0,
+      MIA: 0,
+      NO: 0,
+    },
+  ]);
+
+  function createData(
+    iter: number,
+    s: number,
+    verSel: number,
+    LA: number,
+    SF: number,
+    DEN: number,
+    CHI: number,
+    BOST: number,
+    NY: number,
+    MIA: number,
+    NO: number
+  ) {
+    return { iter, s, verSel, LA, SF, DEN, CHI, BOST, NY, MIA, NO };
+  }
+
+  const rowst = [
+    createData(
+      -1,
+      -1,
+      -1,
+      list[0][1],
+      list[0][2],
+      list[0][3],
+      list[0][4],
+      list[0][5],
+      list[0][6],
+      list[0][7],
+      list[0][8]
+    ),
+    createData(
+      -1,
+      -1,
+      verSel[0],
+      list[1][1],
+      list[1][2],
+      list[1][3],
+      list[1][4],
+      list[1][5],
+      list[1][6],
+      list[1][7],
+      list[1][8]
+    ),
+    createData(
+      -1,
+      -1,
+      verSel[1],
+      list[2][1],
+      list[2][2],
+      list[2][3],
+      list[2][4],
+      list[2][5],
+      list[2][6],
+      list[2][7],
+      list[2][8]
+    ),
+  ];
+
+  const pushItems = () => {
+    // setRows((prev: any) => [
+    //   ...rows,
+    //   createData(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+    //   createData(2, 4, 3, 3, 3, 3, 1, 1, 1, 1, 1),
+    // ]);
+    setRows([
+      createData(
+        -1,
+        -1,
+        -1,
+        list[0][1],
+        list[0][2],
+        list[0][3],
+        list[0][4],
+        list[0][5],
+        list[0][6],
+        list[0][7],
+        list[0][8]
+      ),
+    ]);
+    for (let i = 1; i < 7; i++) {
+        // if(i == 4){
+        //     continue
+        // }
+      setRows((prev) => [
+        ...prev,
+        createData(
+          i,
+          out[i][2],
+          verSel[i - 1],
+          list[i][1],
+          list[i][2],
+          list[i][3],
+          list[i][4],
+          list[i][5],
+          list[i][6],
+          list[i][7],
+          list[i][8]
+        ),
+      ]);
+    }
+  };
+  useEffect(() => {
+    pushItems();
+  }, []);
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -50,24 +191,45 @@ const BasicTable = (props:IProps) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {rows?.map((row) => (
             <TableRow
-              key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
+              key={row.iter}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
               <TableCell component="th" scope="row">
-                {row.name}
+                {row.iter}
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+              <TableCell component="th" scope="row">
+                {row.s}
+              </TableCell>
+              <TableCell align="right">{row.verSel}</TableCell>
+              <TableCell align="right">{row.LA}</TableCell>
+              <TableCell align="right">{row.SF}</TableCell>
+              <TableCell align="right">{row.DEN}</TableCell>
+              <TableCell align="right">{row.CHI}</TableCell>
+              <TableCell align="right">{row.BOST}</TableCell>
+              <TableCell align="right">{row.NY}</TableCell>
+              <TableCell align="right">{row.MIA}</TableCell>
+              <TableCell align="right">{row.NO}</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
   );
-}
+};
 
 export default BasicTable;
+
+// createData(
+//   -1,
+//   -1,
+//   items?.verSel[0],
+//   items?.list[0][0],
+//   items?.list[0][1],
+//   items?.list[0][2],
+//   items?.list[0][3],
+//   items?.list[0][4],
+//   items?.list[0][5],
+//   items?.list[0][6],
+//   items?.list[0][7]
+// ),

@@ -2,13 +2,11 @@
 import React, { useEffect, useState } from "react";
 import ForceGraph2D from "react-force-graph-2d";
 import { data } from "@/utils/misc";
-import { IGraphData } from "@/types/IGraphData";
 import g from "@/helper/dijkstra";
 import BasicTable from "@/components/table";
 
 const Hello = () => {
-  const [linkData, setLinkData] = useState<IGraphData>();
-  const [dijkstra, setDijkstra] = useState<any>();
+  const [dijkstra, setDijkstra] = useState<any>(null);
 
   const insertVals = async (node: { node: string; id: number }) => {
     data.links.map((link: any) => {
@@ -24,20 +22,11 @@ const Hello = () => {
     console.log(dijkstra)
   };
 
-  const handleClick = (node: { node: string; id: number }) => {
-    console.log(node.id);
-  };
-
-  useEffect(() => {
-    setLinkData(data);
-    // insertVals();
-  }, [data]);
-
   return (
     <>
       <div className="flex flex-row-reverse w-auto justify-between">
-        <div className="w-[50%] mx-auto my-auto">
-          <BasicTable items = {dijkstra} />
+        <div className="w-[70%] mx-auto my-auto">
+          {dijkstra && <BasicTable items = {dijkstra} />}
         </div>
         <div className="">
           <ForceGraph2D
