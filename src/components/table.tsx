@@ -83,13 +83,7 @@ const BasicTable = ({ items }: IProps) => {
     return { iter, s, verSel, LA, SF, DEN, CHI, BOST, NY, MIA, NO };
   }
 
-
   const pushItems = () => {
-    // setRows((prev: any) => [
-    //   ...rows,
-    //   createData(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-    //   createData(2, 4, 3, 3, 3, 3, 1, 1, 1, 1, 1),
-    // ]);
     setRows([
       createData(
         -1,
@@ -105,12 +99,12 @@ const BasicTable = ({ items }: IProps) => {
         list[0][8]
       ),
     ]);
-    for (let i = 1; i < 7; i++) {
+    for (let i = 1; i < list.length - 1; i++) {
       setRows((prev) => [
         ...prev,
         createData(
           i,
-          out[i][2],
+          -1,
           verSel[i - 1],
           list[i][1],
           list[i][2],
@@ -122,12 +116,47 @@ const BasicTable = ({ items }: IProps) => {
           list[i][8]
         ),
       ]);
+      //   if (i > 3) {
+      //     setRows((prev) => [
+      //       ...prev,
+      //       createData(
+      //         i,
+      //         -1,
+      //         verSel[i - 1],
+      //         list[i+1][1],
+      //         list[i+1][2],
+      //         list[i+1][3],
+      //         list[i+1][4],
+      //         list[i+1][5],
+      //         list[i+1][6],
+      //         list[i+1][7],
+      //         list[i+1][8]
+      //       ),
+      //     ]);
+      //   } else {
+      //     setRows((prev) => [
+      //       ...prev,
+      //       createData(
+      //         i,
+      //         -1,
+      //         verSel[i - 1],
+      //         list[i][1],
+      //         list[i][2],
+      //         list[i][3],
+      //         list[i][4],
+      //         list[i][5],
+      //         list[i][6],
+      //         list[i][7],
+      //         list[i][8]
+      //       ),
+      //     ]);
+      //   }
     }
   };
   useEffect(() => {
     pushItems();
   }, []);
-
+//   console.log(list);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">

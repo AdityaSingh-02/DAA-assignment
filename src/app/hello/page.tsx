@@ -22,6 +22,7 @@ const Hello = () => {
     g.shortestPath(node.id).then((res) => {
       setDijkstra(res);
     });
+    // console.log(dijkstra)
   };
 
   return (
