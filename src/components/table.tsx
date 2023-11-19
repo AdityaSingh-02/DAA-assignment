@@ -83,47 +83,6 @@ const BasicTable = ({ items }: IProps) => {
     return { iter, s, verSel, LA, SF, DEN, CHI, BOST, NY, MIA, NO };
   }
 
-  const rowst = [
-    createData(
-      -1,
-      -1,
-      -1,
-      list[0][1],
-      list[0][2],
-      list[0][3],
-      list[0][4],
-      list[0][5],
-      list[0][6],
-      list[0][7],
-      list[0][8]
-    ),
-    createData(
-      -1,
-      -1,
-      verSel[0],
-      list[1][1],
-      list[1][2],
-      list[1][3],
-      list[1][4],
-      list[1][5],
-      list[1][6],
-      list[1][7],
-      list[1][8]
-    ),
-    createData(
-      -1,
-      -1,
-      verSel[1],
-      list[2][1],
-      list[2][2],
-      list[2][3],
-      list[2][4],
-      list[2][5],
-      list[2][6],
-      list[2][7],
-      list[2][8]
-    ),
-  ];
 
   const pushItems = () => {
     // setRows((prev: any) => [
@@ -147,9 +106,6 @@ const BasicTable = ({ items }: IProps) => {
       ),
     ]);
     for (let i = 1; i < 7; i++) {
-        // if(i == 4){
-        //     continue
-        // }
       setRows((prev) => [
         ...prev,
         createData(

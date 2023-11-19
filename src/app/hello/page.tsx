@@ -1,32 +1,34 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import ForceGraph2D from "react-force-graph-2d";
+import React, { useState } from "react";
+// import ForceGraph2D from "react-force-graph-2d";
 import { data } from "@/utils/misc";
 import g from "@/helper/dijkstra";
-import BasicTable from "@/components/table";
+import dynamic from "next/dynamic";
+const ForceGraph2D = dynamic(() => import("react-force-graph-2d"), {
+  ssr: false,
+});
+const BasicTable = dynamic(() => import("@/components/table"), { ssr: false });
 
 const Hello = () => {
   const [dijkstra, setDijkstra] = useState<any>(null);
 
-  const insertVals = async (node: { node: string; id: number }) => {
+  const insertVals = async (node: { node: string; id: number }): Promise<void> =>  {
     data.links.map((link: any) => {
-      // g.addEdge(link.source.id, link.target.id, link.value)
       let a = link.source.id;
       let b = link.target.id;
       let c = link.value;
       g.addEdge(a, b, c);
     });
-    g.shortestPath(node.id).then((res)=>{
+    g.shortestPath(node.id).then((res) => {
       setDijkstra(res);
-    })
-    console.log(dijkstra)
+    });
   };
 
   return (
     <>
       <div className="flex flex-row-reverse w-auto justify-between">
         <div className="w-[70%] mx-auto my-auto">
-          {dijkstra && <BasicTable items = {dijkstra} />}
+          {dijkstra && <BasicTable items={dijkstra} />}
         </div>
         <div className="">
           <ForceGraph2D
@@ -36,6 +38,7 @@ const Hello = () => {
             width={800}
             height={1000}
             warmupTicks={10}
+            // @ts-ignore
             onNodeClick={insertVals}
             nodeCanvasObject={(node, ctx, globalScale) => {
               const label = node.node;
