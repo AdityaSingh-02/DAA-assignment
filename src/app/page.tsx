@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import Button from "@mui/material/Button";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 export default function Home() {
   const router = useRouter();
@@ -11,10 +12,10 @@ export default function Home() {
     router.push("dijkstra");
   };
   return (
-    <main className="flex md:h-screen md:flex-col flex-col-reverse items-center md:justify-around justify-center pt-24 md:p-24 space-y-4">
+    <main className="flex md:h-screen md:flex-col flex-col-reverse items-center md:justify-around justify-center pt-24 md:p-28 space-y-4">
       <div className="flex flex-col md:justify-center place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[&#39;&#39;] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[&#39;&#39;] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
         <h1 className="text-3xl font-semibold">Dijkstra Algorithm</h1>
-        <div className="w-[95%] mt-20 md:w-[80%] bg-gray-800 p-10 rounded-lg">
+        <div className="w-[95%] mt-5 md:w-[80%] bg-gray-800 p-10 rounded-lg">
           <h2>
             Dijkstra&#39;s algorithm, named after Dutch computer scientist
             Edsger W. Dijkstra, is a widely used algorithm for finding the
@@ -31,8 +32,8 @@ export default function Home() {
               <ul className="font-normal text-gray-300">
                 <li>
                   - Assign a tentative distance value to every node. Set the
-                  initial node&#39;s distance to 0 and all other nodes&#39; distances to
-                  infinity.
+                  initial node&#39;s distance to 0 and all other nodes&#39;
+                  distances to infinity.
                 </li>
                 <li>- Mark all nodes as unvisited.</li>
               </ul>
@@ -71,7 +72,8 @@ export default function Home() {
               <ul className="font-normal text-gray-300">
                 <li>
                   - Select the unvisited node with the smallest tentative
-                  distance as the new &quot;current node&quot; and repeat steps 3-4.
+                  distance as the new &quot;current node&quot; and repeat steps
+                  3-4.
                 </li>
               </ul>
             </li>
@@ -89,12 +91,18 @@ export default function Home() {
           </ul>
         </div>
       </div>
-      <div className="flex pb-10 z-10 max-w-5xl w-full items-center justify-center font-mono text-sm lg:flex">
+      <div className="flex flex-col space-y-5 pb-10 z-10 max-w-5xl w-full items-center justify-center font-mono text-sm lg:flex">
         <Button
           variant="outlined"
           onClick={handleClick}
           endIcon={<AutoAwesomeIcon />}>
           Project
+        </Button>
+        <Button
+          variant="outlined"
+          onClick={() => router.push("/code")}
+          endIcon={<GitHubIcon />}>
+          Code
         </Button>
       </div>
     </main>
