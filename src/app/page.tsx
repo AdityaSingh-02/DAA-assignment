@@ -8,7 +8,7 @@ export default function Home() {
 
   const handleClick = (e: any) => {
     e.preventDefault;
-    router.replace("hello");
+    router.replace("dijkstra");
   }
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">

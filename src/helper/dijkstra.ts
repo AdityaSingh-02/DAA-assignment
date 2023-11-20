@@ -1,3 +1,5 @@
+import { Console } from "console";
+
 const INF: number = 2147483647;
 
 class dijkstra {
@@ -37,7 +39,7 @@ class dijkstra {
         let weight = this.adj[source][i][1];
         if(!visited.includes(source)){
           visited.push(source);
-          verSel.push(source);
+          // verSel.push(source);
         }
         if (dist[target] > dist[source] + weight) {
           dist[target] = dist[source] + weight;
@@ -50,6 +52,7 @@ class dijkstra {
       }
       out.push([...visited]);
       list.push([...dist]);
+      verSel.push(source);
     }
     return {list, out, verSel};
   }
