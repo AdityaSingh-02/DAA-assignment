@@ -27,8 +27,8 @@ const Hello = () => {
 
   return (
     <>
-      <div className="flex flex-row-reverse w-auto justify-between">
-        <div className="w-[100%] mx-auto my-auto">
+      <div className="flex flex-col justify-center items-center md:flex-row-reverse w-auto md:justify-between">
+        <div className="w-[100%] md:w-[100%] mx-auto my-auto">
           {dijkstra && <BasicTable items={dijkstra} />}
         </div>
         <div className="">
