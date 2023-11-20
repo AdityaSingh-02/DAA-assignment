@@ -8,7 +8,7 @@ export default function Home() {
 
   const handleClick = (e: any) => {
     e.preventDefault;
-    router.replace("dijkstra");
+    router.push("dijkstra");
   };
   return (
     <main className="flex md:h-screen md:flex-col flex-col-reverse items-center md:justify-around justify-center pt-24 md:p-24 space-y-4">
