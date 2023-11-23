@@ -1,10 +1,8 @@
-import { Console } from "console";
-
 const INF: number = 2147483647;
 
 class dijkstra {
   V: any;
-  adj:any;
+  adj: any;
   constructor(V: number) {
     this.V = V;
     this.adj = new Array(V);
@@ -13,19 +11,15 @@ class dijkstra {
     }
   }
 
-
-
   addEdge(source: number, target: number, val: number) {
     this.adj[source].push([target, val]);
-    // this.adj[source].sort((a,b) => a[1]-b[1]); Comparator
-    // this.adj[target].push([source, val]);
   }
   async shortestPath(src: number) {
     let pq = [];
     let list = [];
     let verSel = [];
     let visited = [src];
-    let out:number[][] = [];
+    let out: number[][] = [];
     let dist = new Array(V).fill(INF);
     pq.push([0, src]);
     dist[src] = 0;
@@ -37,9 +31,8 @@ class dijkstra {
       for (let i = 0; i < this.adj[source].length; i++) {
         let target = this.adj[source][i][0];
         let weight = this.adj[source][i][1];
-        if(!visited.includes(source)){
+        if (!visited.includes(source)) {
           visited.push(source);
-          // verSel.push(source);
         }
         if (dist[target] > dist[source] + weight) {
           dist[target] = dist[source] + weight;
@@ -54,10 +47,10 @@ class dijkstra {
       list.push([...dist]);
       verSel.push(source);
     }
-    return {list, out, verSel};
+    return { list, out, verSel };
   }
 }
 let V = 9;
 let g = new dijkstra(V);
- 
+
 export default g;

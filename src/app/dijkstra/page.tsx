@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-// import ForceGraph2D from "react-force-graph-2d";
 import { data } from "@/utils/misc";
 import g from "@/helper/dijkstra";
 import dynamic from "next/dynamic";
@@ -22,7 +21,6 @@ const Hello = () => {
     g.shortestPath(node.id).then((res) => {
       setDijkstra(res);
     });
-    // console.log(dijkstra)
   };
 
   return (
